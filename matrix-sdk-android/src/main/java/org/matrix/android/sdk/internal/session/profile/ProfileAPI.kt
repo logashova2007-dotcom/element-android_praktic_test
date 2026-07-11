@@ -21,6 +21,7 @@ import org.matrix.android.sdk.api.util.JsonDict
 import org.matrix.android.sdk.internal.auth.registration.SuccessResult
 import org.matrix.android.sdk.internal.auth.registration.ValidationCodeBody
 import org.matrix.android.sdk.internal.network.NetworkConstants
+import org.matrix.android.sdk.internal.session.presence.model.SetTimeZoneBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -48,6 +49,11 @@ internal interface ProfileAPI {
     /**
      * Change user display name.
      */
+
+    @GET(NetworkConstants.URI_API_PREFIX_PATH_R0 + "profile/{userId}/m.tz")
+    suspend fun getTimeZone(@Path("userId") userId: String): JsonDict
+
+
     @PUT(NetworkConstants.URI_API_PREFIX_PATH_R0 + "profile/{userId}/displayname")
     suspend fun setDisplayName(
             @Path("userId") userId: String,
@@ -61,6 +67,12 @@ internal interface ProfileAPI {
     suspend fun setAvatarUrl(
             @Path("userId") userId: String,
             @Body body: SetAvatarUrlBody
+    )
+
+    @PUT(NetworkConstants.URI_API_PREFIX_PATH_R0 + "profile/{userId}/m.tz")
+    suspend fun setTimeZone(
+            @Path("userId") userId: String,
+            @Body body: SetTimeZoneBody
     )
 
     /**
@@ -109,4 +121,9 @@ internal interface ProfileAPI {
      */
     @POST(NetworkConstants.URI_API_PREFIX_PATH_R0 + "account/3pid/delete")
     suspend fun deleteThreePid(@Body body: DeleteThreePidBody): DeleteThreePidResponse
+
+    @POST(value = NetworkConstants.URI_API_PREFIX_PATH_R0 + "profile/{userId}/m.tz")
+    suspend fun deleteTimeZone(
+            @Path(value = "userId") userId: String
+    )
 }

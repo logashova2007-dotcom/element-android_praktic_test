@@ -42,6 +42,7 @@ interface ProfileService {
      */
     suspend fun getDisplayName(userId: String): Optional<String>
 
+
     /**
      * Update the display name for this user.
      * @param userId the userId to update the display name of
@@ -49,6 +50,9 @@ interface ProfileService {
      */
     suspend fun setDisplayName(userId: String, newDisplayName: String)
 
+    suspend fun setTimeZone(userId: String, newTimeZoneUTC: String)
+
+    suspend fun deleteTimeZone(userId: String, newTimeZoneUTC: String)
     /**
      * Update the avatar for this user.
      * @param userId the userId to update the avatar of

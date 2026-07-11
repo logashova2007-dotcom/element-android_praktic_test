@@ -47,7 +47,6 @@ android {
 
     testOptions.unitTests.includeAndroidResources = true
 
-    compileSdk versions.compileSdk
 
     defaultConfig {
         minSdk versions.minSdk
@@ -77,6 +76,7 @@ android {
         // Comment to run on Android 12
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
+    compileSdkVersion versions.compileSdk
 
     buildTypes {
         debug {
@@ -134,6 +134,7 @@ android {
         pickFirsts.add("META-INF/LICENSE-notice.md")
         pickFirsts.add("MANIFEST.MF")
     }
+    buildToolsVersion '30.0.3'
 }
 
 static def gitRevision() {
