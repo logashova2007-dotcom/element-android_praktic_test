@@ -69,6 +69,18 @@ internal class DefaultProfileService @Inject constructor(
         }
     }
 
+    override suspend fun setTimeZone(userId: String, newTimeZoneUtc: String) {
+        val params = GetProfileInfoTask.Params(userId)
+        val data = getProfileInfoTask.execute(params)
+        val timeZoneUrl = data[ProfileService.] as? String
+        return Optional.from(timeZoneUrl)
+    }
+
+    override suspend fun deleteTimeZone(userId: String, newTimeZoneUtc: String) {
+        deleteThreePidTask.execute(DeleteThreePidTask.Params(threePid))
+        refreshThreePids()
+    }
+
     override suspend fun updateAvatar(userId: String, newAvatarUri: Uri, fileName: String) {
         val response = fileUploader.uploadFromUri(newAvatarUri, fileName, MimeTypes.Jpeg)
         setAvatarUrlTask.execute(SetAvatarUrlTask.Params(userId = userId, newAvatarUrl = response.contentUri))

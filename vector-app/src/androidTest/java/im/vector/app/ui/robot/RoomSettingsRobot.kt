@@ -110,7 +110,7 @@ class RoomSettingsRobot {
     private fun navigateToInvite() {
         assertDisplayed(R.id.inviteUsersButton)
         clickOn(R.id.inviteUsersButton)
-        Ф@SuppressLint("CheckResult")
+        @SuppressLint("CheckResult")
         ViewActions.closeSoftKeyboard()
         pressBack()
     }

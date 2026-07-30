@@ -9,7 +9,7 @@ import javax.inject.Inject
 internal abstract class DeleteTimeZoneTask : Task<DeleteTimeZoneTask.Params, Unit> {
     data class Params(
             val userId: String,
-            val newTimeZoneUTC: String
+            val newTimeZoneUtc: String
     )
 }
 
@@ -20,7 +20,7 @@ internal class DefaultDeleteTimeZoneTask @Inject constructor(
 
     override suspend fun execute(params: Params) {
         val body = SetTimeZoneBody(
-                UTC = "0"
+                m_tz  = null
         )
         return executeRequest(globalErrorReceiver) {
             profileAPI.setTimeZone(params.userId, body)
