@@ -46,10 +46,12 @@ internal class DefaultProfileService @Inject constructor(
         private val getProfileInfoTask: GetProfileInfoTask,
         private val setDisplayNameTask: SetDisplayNameTask,
         private val setAvatarUrlTask: SetAvatarUrlTask,
+        private val setTimeZoneTask: DefaultSetTimeZoneTask,
         private val addThreePidTask: AddThreePidTask,
         private val validateSmsCodeTask: ValidateSmsCodeTask,
         private val finalizeAddingThreePidTask: FinalizeAddingThreePidTask,
         private val deleteThreePidTask: DeleteThreePidTask,
+        private val deleteTimeZoneTask: DeleteTimeZoneTask,
         private val pendingThreePidMapper: PendingThreePidMapper,
         private val userStore: UserStore,
         private val fileUploader: FileUploader
@@ -70,16 +72,17 @@ internal class DefaultProfileService @Inject constructor(
     }
 
     override suspend fun setTimeZone(userId: String, newTimeZoneUtc: String) {
-        val params = GetProfileInfoTask.Params(userId)
-        val data = getProfileInfoTask.execute(params)
-        val timeZoneUrl = data[ProfileService.] as? String
-        return Optional.from(timeZoneUrl)
+        val params = SetTimeZoneTask.Params(userId, newTimeZoneUtc)
+        return setTimeZoneTask.execute(params)
     }
 
+
+
     override suspend fun deleteTimeZone(userId: String, newTimeZoneUtc: String) {
-        deleteThreePidTask.execute(DeleteThreePidTask.Params(threePid))
+        deleteTimeZoneTask.execute(DeleteTimeZoneTask.Params(userId, newTimeZoneUtc))
         refreshThreePids()
     }
+
 
     override suspend fun updateAvatar(userId: String, newAvatarUri: Uri, fileName: String) {
         val response = fileUploader.uploadFromUri(newAvatarUri, fileName, MimeTypes.Jpeg)
