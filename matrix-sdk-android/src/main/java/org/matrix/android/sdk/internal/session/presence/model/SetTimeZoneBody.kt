@@ -13,6 +13,6 @@ import org.matrix.android.sdk.api.session.presence.model.PresenceEnum
 
 @JsonClass(generateAdapter = true)
 internal data class SetTimeZoneBody(
-        @Json(name = "UTC")
-        val UTC: String
+        @Json(name = "m.tz")
+        val m_tz: String?
 )

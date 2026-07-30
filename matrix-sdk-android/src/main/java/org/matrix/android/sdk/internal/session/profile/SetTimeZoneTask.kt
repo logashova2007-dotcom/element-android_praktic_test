@@ -20,7 +20,7 @@ internal class DefaultSetTimeZoneTask @Inject constructor(
 
     override suspend fun execute(params: Params) {
         val body = SetTimeZoneBody(
-                UTC = params.newTimeZoneUTC
+                m_tz = params.newTimeZoneUTC
         )
         return executeRequest(globalErrorReceiver) {
             profileAPI.setTimeZone(params.userId, body)

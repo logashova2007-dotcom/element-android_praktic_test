@@ -50,9 +50,9 @@ interface ProfileService {
      */
     suspend fun setDisplayName(userId: String, newDisplayName: String)
 
-    suspend fun setTimeZone(userId: String, newTimeZoneUTC: String)
+    suspend fun setTimeZone(userId: String, newTimeZoneUtc: String)
 
-    suspend fun deleteTimeZone(userId: String, newTimeZoneUTC: String)
+    suspend fun deleteTimeZone(userId: String, newTimeZoneUtc: String)
     /**
      * Update the avatar for this user.
      * @param userId the userId to update the avatar of

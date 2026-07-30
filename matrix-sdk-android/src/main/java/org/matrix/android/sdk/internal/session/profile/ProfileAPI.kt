@@ -69,6 +69,10 @@ internal interface ProfileAPI {
             @Body body: SetAvatarUrlBody
     )
 
+    /**
+     * Change user time zone.
+     */
+
     @PUT(NetworkConstants.URI_API_PREFIX_PATH_R0 + "profile/{userId}/m.tz")
     suspend fun setTimeZone(
             @Path("userId") userId: String,
