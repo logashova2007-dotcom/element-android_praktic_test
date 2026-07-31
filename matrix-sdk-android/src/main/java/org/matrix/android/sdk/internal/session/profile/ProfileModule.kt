@@ -47,6 +47,9 @@ internal abstract class ProfileModule {
     abstract fun bindRefreshUserThreePidsTask(task: DefaultRefreshUserThreePidsTask): RefreshUserThreePidsTask
 
     @Binds
+    abstract fun bindSetTimeZoneTask(task: DefaultSetTimeZoneTask): SetTimeZoneTask
+
+    @Binds
     abstract fun bindBindThreePidsTask(task: DefaultBindThreePidsTask): BindThreePidsTask
 
     @Binds
@@ -69,4 +72,7 @@ internal abstract class ProfileModule {
 
     @Binds
     abstract fun bindDeleteThreePidTask(task: DefaultDeleteThreePidTask): DeleteThreePidTask
+
+    @Binds
+    abstract fun bindDeleteTimeZoneTask(task: DefaultDeleteTimeZoneTask): DeleteTimeZoneTask
 }

@@ -50,9 +50,22 @@ interface ProfileService {
      */
     suspend fun setDisplayName(userId: String, newDisplayName: String)
 
+
+    /**
+     * Update the time zone for this user.
+     * @param userId the userId to update the time zone of
+     * @param newTimeZoneUtc the new display name of the user
+     */
     suspend fun setTimeZone(userId: String, newTimeZoneUtc: String)
 
-    suspend fun deleteTimeZone(userId: String, newTimeZoneUtc: String)
+
+    /**
+     * Delete the time zone for this user.
+     * @param userId the userId to delete the time zone
+     */
+    suspend fun deleteTimeZone(userId: String)
+
+
     /**
      * Update the avatar for this user.
      * @param userId the userId to update the avatar of

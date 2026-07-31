@@ -46,7 +46,7 @@ internal class DefaultProfileService @Inject constructor(
         private val getProfileInfoTask: GetProfileInfoTask,
         private val setDisplayNameTask: SetDisplayNameTask,
         private val setAvatarUrlTask: SetAvatarUrlTask,
-        private val setTimeZoneTask: DefaultSetTimeZoneTask,
+        private val setTimeZoneTask: SetTimeZoneTask,
         private val addThreePidTask: AddThreePidTask,
         private val validateSmsCodeTask: ValidateSmsCodeTask,
         private val finalizeAddingThreePidTask: FinalizeAddingThreePidTask,
@@ -73,14 +73,13 @@ internal class DefaultProfileService @Inject constructor(
 
     override suspend fun setTimeZone(userId: String, newTimeZoneUtc: String) {
         val params = SetTimeZoneTask.Params(userId, newTimeZoneUtc)
-        return setTimeZoneTask.execute(params)
+        setTimeZoneTask.execute(params)
     }
 
 
 
-    override suspend fun deleteTimeZone(userId: String, newTimeZoneUtc: String) {
-        deleteTimeZoneTask.execute(DeleteTimeZoneTask.Params(userId, newTimeZoneUtc))
-        refreshThreePids()
+    override suspend fun deleteTimeZone(userId: String) {
+        deleteTimeZoneTask.execute(DeleteTimeZoneTask.Params(userId))
     }
 
 
