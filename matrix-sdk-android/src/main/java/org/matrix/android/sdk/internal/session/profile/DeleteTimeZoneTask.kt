@@ -2,14 +2,12 @@ package org.matrix.android.sdk.internal.session.profile
 
 import org.matrix.android.sdk.internal.network.GlobalErrorReceiver
 import org.matrix.android.sdk.internal.network.executeRequest
-import org.matrix.android.sdk.internal.session.presence.model.SetTimeZoneBody
 import org.matrix.android.sdk.internal.task.Task
 import javax.inject.Inject
 
 internal abstract class DeleteTimeZoneTask : Task<DeleteTimeZoneTask.Params, Unit> {
     data class Params(
-            val userId: String,
-            val newTimeZoneUtc: String
+            val userId: String
     )
 }
 
